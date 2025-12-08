@@ -16,6 +16,10 @@ Using pip
 
 Packages are stored in `requirements.txt`
 
+Update `requirements.txt`
+
+>pip freeze > requirements.txt
+
 # .sh files
 
 update.sh: Updates the bot. Pulls latest code from git.
