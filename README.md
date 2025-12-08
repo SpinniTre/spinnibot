@@ -1,6 +1,14 @@
 # Setup
 
-Install Python Virtual Env (3.3+)
+Activate Python Virtual Env (VENV)
+
+https://docs.python.org/3/library/venv.html
+
+### Linux
+>source ./bin/activate
+
+### Windows
+>source Scripts\activate.bat
 
 # Package management
 
