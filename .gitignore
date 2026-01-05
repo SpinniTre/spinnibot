@@ -1,2 +1,7 @@
 Include/
 Lib/
+
+myvenv/
+
+# Your local token for test bot
+tg_token.dev.txt
