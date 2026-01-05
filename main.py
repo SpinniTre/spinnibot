@@ -2,6 +2,7 @@ from unittest.mock import MagicMock
 from gpiozero import Button
 import telegram
 from telegram.ext import Application, CommandHandler, CallbackContext
+from telegram.ext import ContextTypes
 from time import localtime, strftime, sleep
 
 APP_VERSION = "0.0.1"
@@ -25,6 +26,11 @@ def get_bot_token() -> str:
         if not token:
             raise ValueError("Token was read but is empty")
         return token
+
+
+
+async def door_open(ctx: ContextTypes.DEFAULT_TYPE):
+    await ctx.bot.send_message(-1003404217068, "aaaaa")
 
 
 async def cmd_help(update: telegram.Update, ctx: CallbackContext) -> None:
@@ -58,6 +64,8 @@ def main():
     for cmd_handler in COMMANDS:
         print(f"Adding command handler: {cmd_handler}")
         app.add_handler(cmd_handler)
+
+    app.job_queue.run_repeating(door_open, first=1, interval=10, last=30)
     
 
     print("Running...")
