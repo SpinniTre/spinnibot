@@ -1,6 +1,7 @@
-# Setup
+# Spinnibot ~~ Setup and documentation
 
-Activate Python Virtual Env (VENV)
+1. Install python VENV
+2. Activate Python Virtual Env (VENV)
 
 https://docs.python.org/3/library/venv.html
 
@@ -10,13 +11,31 @@ https://docs.python.org/3/library/venv.html
 ### Windows
 >source Scripts\activate.bat
 
+DO NOT include venv files to git
+
+---
+
+# How to run
+
+## Setup
+- Install packages etc.
+- Add Telegram secret API token to <todo>
+  - See if it's already set up `echo $<todo_token_name_here>`
+- Run from bash script  `bash run.sh` (recommended) or run python main file.
+
+---
+
 # Package management
 
 Using pip
 
-Packages are stored in `requirements.txt`
+Package list stored in `requirements.txt`
 
-Update `requirements.txt`
+## Install dependencies
+
+> pip install -r requirements.txt
+
+## Update `requirements.txt`
 
 >pip freeze > requirements.txt
 
