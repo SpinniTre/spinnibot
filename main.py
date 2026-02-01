@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+import os
 from unittest.mock import MagicMock
 from gpiozero import Button
 import telegram
@@ -7,7 +9,9 @@ from time import localtime, strftime, sleep
 
 APP_VERSION = "0.0.1"
 
-tokenfile = "tg_token.dev.txt"
+load_dotenv()
+
+token = os.getenv("API_TOKEN")
 channel = ""
 kytkin =  MagicMock() #Button(23)
 kytkin.is_pressed = False
@@ -16,16 +20,7 @@ kytkin.is_pressed = False
 
 
 def get_bot_token() -> str:
-    
-    # TODO: use environment variable
-    def get_token_file_name() -> str:
-        return "tg_token.dev.txt"
-    
-    with open(get_token_file_name(), 'r') as file:
-        token = file.readline().strip()
-        if not token:
-            raise ValueError("Token was read but is empty")
-        return token
+    return token
 
 
 
@@ -66,11 +61,11 @@ def main():
         app.add_handler(cmd_handler)
 
     app.job_queue.run_repeating(door_open, first=1, interval=10, last=30)
-    
+
 
     print("Running...")
     app.run_polling()
-        
+
 
 if __name__ == "__main__":
     main()
