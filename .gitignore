@@ -1,6 +1,12 @@
 Include/
 Lib/
 
+# Ignore the virtual environment
+bin/
+.venv/
+venv/
+env/
+ENV/
 myvenv/
 
 # Your local token for test bot
