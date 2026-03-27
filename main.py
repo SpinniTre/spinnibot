@@ -12,17 +12,17 @@ APP_VERSION = "0.0.1"
 load_dotenv()
 
 token = os.getenv("API_TOKEN")
-channel = ""
-kytkin =  MagicMock() #Button(23)
-kytkin.is_pressed = False
-
+pin = os.getenv("PIN")
+channel = os.getenv("CHANNEL")
+sensor =  Button(pin) #MagicMock
 
 
 
 def get_bot_token() -> str:
     return token
 
-
+def get_channel() -> str:
+    return channel
 
 async def door_open(ctx: ContextTypes.DEFAULT_TYPE):
     await ctx.bot.send_message(-1003404217068, "aaaaa")
@@ -34,9 +34,9 @@ async def cmd_help(update: telegram.Update, ctx: CallbackContext) -> None:
 
 
 async def cmd_status(update: telegram.Update, context: CallbackContext):
-    global kytkin
+    global sensor
 
-    if kytkin.is_pressed:
+    if sensor.is_pressed:
         await update.message.reply_text("Spinni is closed.")
     else:
         await update.message.reply_text("Spinni is open!")
@@ -60,7 +60,7 @@ def main():
         print(f"Adding command handler: {cmd_handler}")
         app.add_handler(cmd_handler)
 
-    app.job_queue.run_repeating(door_open, first=1, interval=10, last=30)
+    #app.job_queue.run_repeating(door_open, first=1, interval=10, last=30)
 
 
     print("Running...")
