@@ -1,0 +1,15 @@
+Include/
+Lib/
+
+# env
+.env
+
+
+# Ignore the virtual environment
+bin/
+.venv/
+venv/
+env/
+ENV/
+myvenv/
+
